@@ -86,14 +86,14 @@ const ModalContent = styled.View`
   flex-wrap: nowrap;
 `
 
-const ChildrenOverlay = styled.TouchableOpacity`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`
+// const ChildrenOverlay = styled.TouchableOpacity`
+//   position: absolute;
+//   z-index: 1;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+// `
 
 const HighlightView = styled.View`
   position: relative;
@@ -339,7 +339,8 @@ export default class Tips extends PureComponent {
     const {
       children, position, text, childrenStyle, tooltipArrowStyle,
       modalStyle, textStyle, style, contentStyle, enableChildrenInteraction,
-      tooltipContainerStyle, content, offsetLeft, offsetTop
+      tooltipContainerStyle, content, offsetLeft, offsetTop,
+      visibleHighlight
     } = this.props
 
     const {
@@ -380,20 +381,20 @@ export default class Tips extends PureComponent {
                   contentStyle
                 ]}
               >
-                <ChildrenOverlay
+                {/* <ChildrenOverlay
                   onPress={this.handleRequestClose}
                   style={styles.childrenOverlay}
-                />
+                /> */}
 
                 <HighlightView
                   style={[{
                     width,
                     height,
                     zIndex: enableChildrenInteraction ? 2 : 0
-                    }, childrenStyle
+                  }, childrenStyle
                   ]}
                 >
-                  {children}
+                  {visibleHighlight?children:null}
                 </HighlightView>
 
                 <View
@@ -428,6 +429,7 @@ export default class Tips extends PureComponent {
 
 Tips.defaultProps = {
   visible: false,
+  visibleHighlight: false,
   style: {},
   textStyle: {},
   modalStyle: {},
@@ -442,7 +444,7 @@ Tips.defaultProps = {
   delay: 250,
   text: '',
   position: 'top',
-  onRequestClose: () => {},
+  onRequestClose: () => { },
   onRequestNext: null,
   enableChildrenInteraction: false
 }
@@ -556,6 +558,13 @@ Tips.propTypes = {
    */
   visible: PropTypes.bool,
 
+  /**
+     * Set the visibility of your highlight Tips
+     * @default false
+     * @type {Boolean}
+     */
+    visibleHighlight: PropTypes.bool,
+  
   /**
    * If set to true, interation with children won't close the Tips
    * @default false

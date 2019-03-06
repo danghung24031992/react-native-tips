@@ -79,6 +79,7 @@ export default MyButton
 | tooltipArrowStyle | Object | Optional | Override the style of the arrow outside the Tips |
 | tooltipContainerStyle | Object | Optional | Override the style of the container of your tips (used for positionning) |
 | visible | Boolean | Default: `false` | Set the visibility of your Tips |
+| visibleHighlight | Boolean | Default: `false` | Set the visibility of your  highlight Tips |
 | enableChildrenInteraction | Boolean | Default: `false` | If set to true, interation with children won't close the Tips |
 
 
